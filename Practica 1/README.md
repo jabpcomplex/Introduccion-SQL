@@ -10,16 +10,17 @@
     nombre_curso varchar(50),
     fecha_inicio varchar(50),
     capacidad_alumnos int(3));
-    
-    
+
     CREATE TABLE alumno(
     IDalumno varchar(50) NOT NULL PRIMARY KEY,
     nombre_alumno varchar(50) NOT NULL,
     edad int(3) NOT NULL,
     telefono numeric(20),
     IDcurso int(50),
+    CONSTRAINT FK_cursos_id_alumno
     FOREIGN KEY(IDcurso) REFERENCES cursos(IDcurso));
-    
+
+
     CREATE TABLE profesor(
     IDprofesor varchar(50) NOT NULL PRIMARY KEY,
     nombre_profesor varchar(50) NOT NULL,
@@ -27,11 +28,9 @@
     telefono numeric(20),
     sexo varchar(20),
     IDcurso int(50),
-    FOREIGN KEY(IDcurso) REFERENCES cursos(IDcurso));
-    
-    
-    
-    
+    CONSTRAINT FK_cursos
+    FOREIGN KEY(IDcurso) REFERENCES cursos(IDcurso))
+
     INSERT INTO
     cursos VALUES
     (1,"A-001","12pm-2pm", "presencial", "mecanica vectorial","23-Abril-2022",50);
@@ -205,3 +204,31 @@
 | 5       | B-010    | 3:30pm-5:30pm   | virtual    | psicologia social         | 23-Abril-2022      | 33                |
 | 7       | A-002    | 9:00am-11:00am  | virtual    | sociologia contemporaneal | 22-Septiembre-2022 | 50                |
 
+---
+
+**Query #2**
+
+    SELECT *
+    FROM profesor
+    WHERE edad > 40;
+
+| IDprofesor | nombre_profesor | edad | telefono  | sexo | IDcurso |
+| ---------- | --------------- | ---- | --------- | ---- | ------- |
+| unam5      | Sofia Sariñama  | 53   | 556293284 | M    | 2       |
+| unam6      | Leonel Messi    | 45   | 556293284 | H    | 9       |
+| unam9      | Andres Manuel   | 66   | 556293284 | H    | 7       |
+
+---
+
+**Query #3**
+
+    SELECT AVG(edad)
+    FROM alumno;
+
+| AVG(edad) |
+| --------- |
+| 29.4706   |
+
+---
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/3GSARdpsqYV8Ji1W4iMPVV/0)
