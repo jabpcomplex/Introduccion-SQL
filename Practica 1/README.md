@@ -10,17 +10,16 @@
     nombre_curso varchar(50),
     fecha_inicio varchar(50),
     capacidad_alumnos int(3));
-
+    
+    
     CREATE TABLE alumno(
     IDalumno varchar(50) NOT NULL PRIMARY KEY,
     nombre_alumno varchar(50) NOT NULL,
     edad int(3) NOT NULL,
     telefono numeric(20),
     IDcurso int(50),
-    CONSTRAINT FK_cursos_id_alumno
     FOREIGN KEY(IDcurso) REFERENCES cursos(IDcurso));
-
-
+    
     CREATE TABLE profesor(
     IDprofesor varchar(50) NOT NULL PRIMARY KEY,
     nombre_profesor varchar(50) NOT NULL,
@@ -28,9 +27,11 @@
     telefono numeric(20),
     sexo varchar(20),
     IDcurso int(50),
-    CONSTRAINT FK_cursos
-    FOREIGN KEY(IDcurso) REFERENCES cursos(IDcurso))
+    FOREIGN KEY(IDcurso) REFERENCES cursos(IDcurso));
+    
 
+    
+     
     INSERT INTO
     cursos VALUES
     (1,"A-001","12pm-2pm", "presencial", "mecanica vectorial","23-Abril-2022",50);
@@ -181,7 +182,7 @@
     INSERT INTO
     profesor VALUES
     ("unam10","Enriqueta Peña",40, 556293284, "M",6);
-    
+
 
 ---
 
